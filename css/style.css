@@ -1,0 +1,38 @@
+body {
+    background-color: #F6F6F6;
+    ;
+}
+
+.bg-violate {
+    background-color: #5D5FEF;
+    font-weight: 500;
+    font-size: larger;
+}
+
+.text-violate {
+    color: #5D5FEF;
+    font-weight: bold;
+    font-size: larger;
+}
+
+.news-btn-style {
+    color: #5D5FEF;
+    font-weight: bold;
+    font-size: x-large;
+    text-decoration-thickness: 0.1em;
+}
+
+.blog-btn-style {
+    text-decoration: none;
+    color: rgba(0, 0, 0, 0.438);
+    font-size: larger;
+}
+
+hr {
+    height: 2px;
+    border-width: 0;
+    color: gray;
+    background-color: gray;
+    width: 85%;
+    margin: auto;
+}
