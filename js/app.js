@@ -12,7 +12,7 @@ const showNavbar = array => {
 
     let tempo = 0;
     array.forEach(ar => {
-        
+
         const anchorDiv = document.createElement('div');
 
         anchorDiv.innerHTML =
@@ -46,7 +46,7 @@ const navselect = (temp) => {
 const cardshow = (id, name, tempo) => {
     tglSpinr(true);
     navselect(tempo);
-    
+
     const catagoryName = document.getElementById('catagory-name');
     catagoryName.innerText = `for ${name} catagory`;
     const url2 = `https://openapi.programming-hero.com/api/news/category/${id}`;
@@ -79,16 +79,16 @@ function objSort(objects) {
 const displayCard = (inf, count) => {
     const totalCard = document.getElementById('total-card');
     totalCard.innerText = count;
-    
+
     const cardSection = document.getElementById('card-section');
     cardSection.textContent = "";
     let info = JSON.parse(JSON.stringify(inf));
-    
+
     info = objSort(info);
-    
+
 
     for (const data of info) {
-        
+
 
         const cardDiv = document.createElement('div');
         // cardDiv.classList.add('card', 'm-4', 'p-4', 'mh-25');
@@ -133,8 +133,9 @@ const displayCard = (inf, count) => {
             </div>
     `;
         cardSection.appendChild(cardDiv);
-        tglSpinr(false);
+
     }
+    tglSpinr(false);
 }
 const tglSpinr = isWhat => {
     const loaderSection = document.getElementById('loader');
@@ -158,14 +159,14 @@ const displaynewsDetails = news => {
     const modalTitle = document.getElementById('newsDetailModalLabel');
     modalTitle.innerText = news.title;
     const newsDetails = document.getElementById('news-details');
-    
+
     newsDetails.innerHTML = `
         <img src="${news.image_url}" class="img-fluid" alt="">
         <p>${news.details}</p>
-        <p>Author: ${news.author.name?news.author.name:'not found'}</p>
-        <p>Published: ${news.published_date?news.published_date:'not found'}</p>
-        <p>rating: ${news.rating.number?news.rating.number:'not shown'}</p>
-        <p>Total View: ${news.total_view?news.total_view:'not shown'}</p>
+        <p>Author: ${news.author.name ? news.author.name : 'not found'}</p>
+        <p>Published: ${news.published_date ? news.published_date : 'not found'}</p>
+        <p>rating: ${news.rating.number ? news.rating.number : 'not shown'}</p>
+        <p>Total View: ${news.total_view ? news.total_view : 'not shown'}</p>
         `
 }
 
