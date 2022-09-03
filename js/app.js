@@ -23,7 +23,7 @@ const showNavbar = array => {
         tempo++;
     }
     )
-    cardshow('01', 'Breaking News', 0);
+    // cardshow('01', 'Breaking News', 0);
 }
 
 let before = -1;
