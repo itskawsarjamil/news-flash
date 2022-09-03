@@ -52,7 +52,7 @@
         <div class="container bg-white">
             <p class="text-start p-3 text-black fs-5 mt-3">
                 <span id="total-card">0</span> items found
-                 <span id="catagory-name"></span>
+                <span id="catagory-name"></span>
             </p>
         </div>
         <!-- filter -->
@@ -76,9 +76,31 @@
                 </div>
             </div>
         </section>
+
         <!-- card -->
         <section class="container mt-4" id="card-section">
-            
+
+        </section>
+        <section>
+
+            <!-- Modal -->
+            <div class="modal fade" id="newsDetailModal" tabindex="-1"
+                aria-labelledby="newsDetailModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="newsDetailModalLabel"></h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div id="news-details" class="modal-body">
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
 
@@ -89,7 +111,7 @@
 </body>
 
 
-<footer class=" text-center bg-white d-flex align-items-center justify-content-center">
+<footer class=" text-center bg-white d-flex align-items-center justify-content-center height-footer">
     <p>Copyright 2022 News Flash</p>
 
 </footer>

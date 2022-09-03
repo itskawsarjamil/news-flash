@@ -5,15 +5,14 @@ const loadNavbar = () => {
         .then(data => showNavbar(data.data.news_category))
         .catch(error => console.log(error));
 }
-let arr = [];
+
 const showNavbar = array => {
     const navBar = document.getElementById('navbar-nav');
     navBar.textContent = "";
 
-    arr = array;
     let tempo = 0;
     array.forEach(ar => {
-        // console.log(ar);
+        
         const anchorDiv = document.createElement('div');
 
         anchorDiv.innerHTML =
@@ -47,7 +46,7 @@ const navselect = (temp) => {
 const cardshow = (id, name, tempo) => {
     tglSpinr(true);
     navselect(tempo);
-    // console.log(id,name,tempo);
+    
     const catagoryName = document.getElementById('catagory-name');
     catagoryName.innerText = `for ${name} catagory`;
     const url2 = `https://openapi.programming-hero.com/api/news/category/${id}`;
@@ -80,21 +79,22 @@ function objSort(objects) {
 const displayCard = (inf, count) => {
     const totalCard = document.getElementById('total-card');
     totalCard.innerText = count;
-    console.log(inf);
+    
     const cardSection = document.getElementById('card-section');
     cardSection.textContent = "";
     let info = JSON.parse(JSON.stringify(inf));
-    console.log('before:', info);
+    
     info = objSort(info);
-    console.log('after:', info);
+    
 
     for (const data of info) {
-        // console.log((data));
+        
 
         const cardDiv = document.createElement('div');
-        cardDiv.classList.add('card', 'm-4', 'p-4', 'mh-25');
+        // cardDiv.classList.add('card', 'm-4', 'p-4', 'mh-25');
         cardDiv.innerHTML =
             `
+            <div class="card m-4 p-4 mh-25"  data-bs-toggle="modal" data-bs-target="#newsDetailModal" onclick="loadnewsDetails('${data._id}')">
             <div class="row g-0">
             <div class="col-md-4">
                 <img src="${data.thumbnail_url}" class="img-fluid rounded-start" alt="">
@@ -117,19 +117,20 @@ const displayCard = (inf, count) => {
                         <i class="fa-regular fa-eye pt-2"></i>
                         <p class="pt-1 ms-1 mb-0">${data.total_view ? data.total_view : 'not shown'}</p>
                     </div>
-                    <div>
+                    <div class="d-none d-sm-block">
                         <i class="fa-solid fa-star-sharp-half-stroke"></i>
                         <i class="fa-regular fa-star"></i>
                         <i class="fa-regular fa-star"></i>
                         <i class="fa-regular fa-star"></i>
                         <i class="fa-regular fa-star"></i>
                     </div>
-                    <div>
+                    <div class="d-none d-sm-block">
                         <i class="fa-solid fa-arrow-right text-violate"></i>
                     </div>
                 </div>
             </div>
         </div>
+            </div>
     `;
         cardSection.appendChild(cardDiv);
         tglSpinr(false);
@@ -144,5 +145,29 @@ const tglSpinr = isWhat => {
         loaderSection.classList.add('d-none');
     }
 }
+
+const loadnewsDetails = async id => {
+    const url = `https://openapi.programming-hero.com/api/news/${id}`;
+    const res = await fetch(url);
+    const data = await res.json();
+    displaynewsDetails(data.data[0]);
+}
+
+
+const displaynewsDetails = news => {
+    const modalTitle = document.getElementById('newsDetailModalLabel');
+    modalTitle.innerText = news.title;
+    const newsDetails = document.getElementById('news-details');
+    
+    newsDetails.innerHTML = `
+        <img src="${news.image_url}" class="img-fluid" alt="">
+        <p>${news.details}</p>
+        <p>Author: ${news.author.name?news.author.name:'not found'}</p>
+        <p>Published: ${news.published_date?news.published_date:'not found'}</p>
+        <p>rating: ${news.rating.number?news.rating.number:'not shown'}</p>
+        <p>Total View: ${news.total_view?news.total_view:'not shown'}</p>
+        `
+}
+
 
 loadNavbar();
