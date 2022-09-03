@@ -47,13 +47,12 @@ const cardshow = (id, name, tempo) => {
     tglSpinr(true);
     navselect(tempo);
 
-    const catagoryName = document.getElementById('catagory-name');
-    catagoryName.innerText = `for ${name} catagory`;
+    
     const url2 = `https://openapi.programming-hero.com/api/news/category/${id}`;
 
     fetch(url2)
         .then(res => res.json())
-        .then(data => displayCard(data.data, data.data.length))
+        .then(data => displayCard(data.data, data.data.length,name))
         .catch(error => console.log(error));
 
 }
@@ -76,10 +75,24 @@ function objSort(objects) {
 
 }
 
-const displayCard = (inf, count) => {
+const displayCard = (inf, count,name) => {
     const totalCard = document.getElementById('total-card');
-    totalCard.innerText = count;
+    
+    const catagoryName = document.getElementById('catagory-name');
 
+    
+    if(count!=0)
+    {
+        totalCard.innerText = count;
+        catagoryName.innerText = `in ${name} catagory`;
+        
+    }
+    else
+    {
+        
+        totalCard.innerText = 'No';
+        catagoryName.innerText='';
+    }
     const cardSection = document.getElementById('card-section');
     cardSection.textContent = "";
     let info = JSON.parse(JSON.stringify(inf));
@@ -89,7 +102,7 @@ const displayCard = (inf, count) => {
 
     for (const data of info) {
 
-
+        console.log(data);
         const cardDiv = document.createElement('div');
         // cardDiv.classList.add('card', 'm-4', 'p-4', 'mh-25');
         cardDiv.innerHTML =
