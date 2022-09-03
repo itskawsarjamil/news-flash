@@ -45,6 +45,7 @@ const navselect = (temp) => {
 }
 
 const cardshow = (id, name, tempo) => {
+    tglSpinr(true);
     navselect(tempo);
     // console.log(id,name,tempo);
     const catagoryName = document.getElementById('catagory-name');
@@ -60,7 +61,7 @@ const cardshow = (id, name, tempo) => {
 
 function objSort(objects) {
     var len1 = objects.length;
-    var len2=len1-1;
+    var len2 = len1 - 1;
     for (var i = 0; i < len2; i++) {
         // var aview = objects[i].total_view;
         for (var j = i + 1; j < len1; j++) {
@@ -131,6 +132,16 @@ const displayCard = (inf, count) => {
         </div>
     `;
         cardSection.appendChild(cardDiv);
+        tglSpinr(false);
+    }
+}
+const tglSpinr = isWhat => {
+    const loaderSection = document.getElementById('loader');
+    if (isWhat) {
+        loaderSection.classList.remove('d-none')
+    }
+    else {
+        loaderSection.classList.add('d-none');
     }
 }
 
